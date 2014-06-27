@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the openproducer_music feature.
+ */
+
+include_once('openproducer_music.features.inc');
