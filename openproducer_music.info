@@ -27,7 +27,6 @@ dependencies[] = panelizer
 dependencies[] = panels
 dependencies[] = pathauto
 dependencies[] = pushtape_player
-dependencies[] = pushtape_services
 dependencies[] = soundmanager2
 dependencies[] = strongarm
 dependencies[] = taxonomy

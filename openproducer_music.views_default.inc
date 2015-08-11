@@ -33,7 +33,7 @@ function openproducer_music_views_default_views() {
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['pager']['options']['id'] = '0';
-  $handler->display->display_options['style_plugin'] = 'responsive_grid';
+  $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
   /* No results behavior: Global: Text area */
   $handler->display->display_options['empty']['area']['id'] = 'area';
@@ -89,11 +89,8 @@ function openproducer_music_views_default_views() {
   /* Display: Album grid */
   $handler = $view->new_display('panel_pane', 'Album grid', 'panel_pane_1');
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
-  $handler->display->display_options['style_plugin'] = 'responsive_grid';
-  $handler->display->display_options['style_options']['wrapper_classes'] = 'group widgets';
-  $handler->display->display_options['style_options']['column_classes'] = 'col span_1_of_4';
-  $handler->display->display_options['style_options']['first_column_classes'] = '';
-  $handler->display->display_options['style_options']['last_column_classes'] = '';
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_options']['row_class'] = 'col-xs-6 col-md-3';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
@@ -240,7 +237,7 @@ function openproducer_music_views_default_views() {
   $view = new view();
   $view->name = 'releases';
   $view->description = 'This is a combination view of all albums and single tracks.';
-  $view->tag = 'openproducer';
+  $view->tag = 'pushtape';
   $view->base_table = 'node';
   $view->human_name = 'Releases';
   $view->core = 7;
@@ -259,18 +256,16 @@ function openproducer_music_views_default_views() {
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['pager']['options']['id'] = '0';
-  $handler->display->display_options['style_plugin'] = 'responsive_grid';
-  $handler->display->display_options['style_options']['wrapper_classes'] = 'group widgets';
-  $handler->display->display_options['style_options']['column_classes'] = 'col span_1_of_4';
-  $handler->display->display_options['style_options']['first_column_classes'] = '';
-  $handler->display->display_options['style_options']['last_column_classes'] = '';
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_options']['row_class'] = 'col-xs-6 col-md-3';
   $handler->display->display_options['row_plugin'] = 'fields';
   /* No results behavior: Global: Text area */
   $handler->display->display_options['empty']['area']['id'] = 'area';
   $handler->display->display_options['empty']['area']['table'] = 'views';
   $handler->display->display_options['empty']['area']['field'] = 'area';
-  $handler->display->display_options['empty']['area']['label'] = 'No releases yet';
-  $handler->display->display_options['empty']['area']['content'] = 'No releases yet. Add a <a href="?q=node/add/track">new track!</a>';
+  $handler->display->display_options['empty']['area']['label'] = 'No releases featured yet';
+  $handler->display->display_options['empty']['area']['empty'] = TRUE;
+  $handler->display->display_options['empty']['area']['content'] = 'Releases flagged as featured will appear here.';
   $handler->display->display_options['empty']['area']['format'] = 'filtered_html';
   /* Field: Content: Artwork */
   $handler->display->display_options['fields']['field_artwork']['id'] = 'field_artwork';
@@ -281,7 +276,7 @@ function openproducer_music_views_default_views() {
   $handler->display->display_options['fields']['field_artwork']['hide_alter_empty'] = FALSE;
   $handler->display->display_options['fields']['field_artwork']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_artwork']['settings'] = array(
-    'image_style' => 'artwork_small',
+    'image_style' => 'artwork_medium',
     'image_link' => 'content',
   );
   /* Field: Content: Title */
@@ -291,6 +286,14 @@ function openproducer_music_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Field: Content: Artist */
+  $handler->display->display_options['fields']['field_artist']['id'] = 'field_artist';
+  $handler->display->display_options['fields']['field_artist']['table'] = 'field_data_field_artist';
+  $handler->display->display_options['fields']['field_artist']['field'] = 'field_artist';
+  $handler->display->display_options['fields']['field_artist']['label'] = '';
+  $handler->display->display_options['fields']['field_artist']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_artist']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_artist']['type'] = 'taxonomy_term_reference_plain';
   /* Sort criterion: Content: Release date (field_release_date) */
   $handler->display->display_options['sorts']['field_release_date_value']['id'] = 'field_release_date_value';
   $handler->display->display_options['sorts']['field_release_date_value']['table'] = 'field_data_field_release_date';
@@ -336,17 +339,26 @@ function openproducer_music_views_default_views() {
     'track' => 'track',
   );
   $handler->display->display_options['filters']['type_1']['group'] = 2;
-  /* Filter criterion: Broken/missing handler */
-  $handler->display->display_options['filters']['field_album_target_id']['id'] = 'field_album_target_id';
-  $handler->display->display_options['filters']['field_album_target_id']['table'] = 'field_data_field_album';
-  $handler->display->display_options['filters']['field_album_target_id']['field'] = 'field_album_target_id';
-  $handler->display->display_options['filters']['field_album_target_id']['operator'] = 'empty';
-  $handler->display->display_options['filters']['field_album_target_id']['group'] = 2;
 
   /* Display: Release grid */
   $handler = $view->new_display('panel_pane', 'Release grid', 'panel_pane_4');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['defaults']['css_class'] = FALSE;
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_options']['row_class'] = 'col-xs-6 col-md-3';
+  $handler->display->display_options['style_options']['default_row_class'] = FALSE;
+  $handler->display->display_options['style_options']['row_class_special'] = FALSE;
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: Entity Reference: Referencing entity */
+  $handler->display->display_options['relationships']['reverse_field_tracklist_node']['id'] = 'reverse_field_tracklist_node';
+  $handler->display->display_options['relationships']['reverse_field_tracklist_node']['table'] = 'node';
+  $handler->display->display_options['relationships']['reverse_field_tracklist_node']['field'] = 'reverse_field_tracklist_node';
+  $handler->display->display_options['relationships']['reverse_field_tracklist_node']['relationship'] = 'field_tracklist_target_id';
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Sort criterion: Content: Release date (field_release_date) */
   $handler->display->display_options['sorts']['field_release_date_value']['id'] = 'field_release_date_value';
@@ -362,6 +374,49 @@ function openproducer_music_views_default_views() {
   $handler->display->display_options['sorts']['created']['order'] = 'DESC';
   $handler->display->display_options['sorts']['created']['exposed'] = TRUE;
   $handler->display->display_options['sorts']['created']['expose']['label'] = 'Post date';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['filter_groups']['operator'] = 'OR';
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'AND',
+  );
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'album' => 'album',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status_1']['id'] = 'status_1';
+  $handler->display->display_options['filters']['status_1']['table'] = 'node';
+  $handler->display->display_options['filters']['status_1']['field'] = 'status';
+  $handler->display->display_options['filters']['status_1']['value'] = '1';
+  $handler->display->display_options['filters']['status_1']['group'] = 2;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type_1']['id'] = 'type_1';
+  $handler->display->display_options['filters']['type_1']['table'] = 'node';
+  $handler->display->display_options['filters']['type_1']['field'] = 'type';
+  $handler->display->display_options['filters']['type_1']['value'] = array(
+    'track' => 'track',
+  );
+  $handler->display->display_options['filters']['type_1']['group'] = 2;
+  /* Filter criterion: Content: Tracklist (field_tracklist) */
+  $handler->display->display_options['filters']['field_tracklist_target_id']['id'] = 'field_tracklist_target_id';
+  $handler->display->display_options['filters']['field_tracklist_target_id']['table'] = 'field_data_field_tracklist';
+  $handler->display->display_options['filters']['field_tracklist_target_id']['field'] = 'field_tracklist_target_id';
+  $handler->display->display_options['filters']['field_tracklist_target_id']['relationship'] = 'reverse_field_tracklist_node';
+  $handler->display->display_options['filters']['field_tracklist_target_id']['operator'] = 'empty';
+  $handler->display->display_options['filters']['field_tracklist_target_id']['group'] = 2;
   $handler->display->display_options['pane_category']['name'] = 'Discography';
   $handler->display->display_options['pane_category']['weight'] = '-5';
   $handler->display->display_options['allow']['use_pager'] = 0;
@@ -374,14 +429,22 @@ function openproducer_music_views_default_views() {
   $handler->display->display_options['allow']['exposed_form'] = 'exposed_form';
   $handler->display->display_options['allow']['fields_override'] = 'fields_override';
 
-  /* Display: Block */
-  $handler = $view->new_display('block', 'Block', 'block_1');
-  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
+  /* Display: Featured Release */
+  $handler = $view->new_display('panel_pane', 'Featured Release', 'panel_pane_1');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['defaults']['css_class'] = FALSE;
   $handler->display->display_options['defaults']['pager'] = FALSE;
-  $handler->display->display_options['pager']['type'] = 'mini';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '5';
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '1';
   $handler->display->display_options['pager']['options']['offset'] = '0';
-  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_options']['default_row_class'] = FALSE;
+  $handler->display->display_options['style_options']['row_class_special'] = FALSE;
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Artwork */
   $handler->display->display_options['fields']['field_artwork']['id'] = 'field_artwork';
@@ -392,7 +455,7 @@ function openproducer_music_views_default_views() {
   $handler->display->display_options['fields']['field_artwork']['hide_alter_empty'] = FALSE;
   $handler->display->display_options['fields']['field_artwork']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_artwork']['settings'] = array(
-    'image_style' => 'artwork_thumbnail',
+    'image_style' => 'artwork_large',
     'image_link' => 'content',
   );
   /* Field: Content: Title */
@@ -402,12 +465,100 @@ function openproducer_music_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Field: Content: Artist */
+  $handler->display->display_options['fields']['field_artist']['id'] = 'field_artist';
+  $handler->display->display_options['fields']['field_artist']['table'] = 'field_data_field_artist';
+  $handler->display->display_options['fields']['field_artist']['field'] = 'field_artist';
+  $handler->display->display_options['fields']['field_artist']['label'] = '';
+  $handler->display->display_options['fields']['field_artist']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_artist']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_artist']['type'] = 'taxonomy_term_reference_plain';
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Global: Random */
+  $handler->display->display_options['sorts']['random']['id'] = 'random';
+  $handler->display->display_options['sorts']['random']['table'] = 'views';
+  $handler->display->display_options['sorts']['random']['field'] = 'random';
+  /* Sort criterion: Content: Release date (field_release_date) */
+  $handler->display->display_options['sorts']['field_release_date_value']['id'] = 'field_release_date_value';
+  $handler->display->display_options['sorts']['field_release_date_value']['table'] = 'field_data_field_release_date';
+  $handler->display->display_options['sorts']['field_release_date_value']['field'] = 'field_release_date_value';
+  $handler->display->display_options['sorts']['field_release_date_value']['order'] = 'DESC';
+  $handler->display->display_options['sorts']['field_release_date_value']['expose']['label'] = 'Release date';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['filter_groups']['operator'] = 'OR';
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'AND',
+  );
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'album' => 'album',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Content: Feature content (field_featured_status) */
+  $handler->display->display_options['filters']['field_featured_status_value']['id'] = 'field_featured_status_value';
+  $handler->display->display_options['filters']['field_featured_status_value']['table'] = 'field_data_field_featured_status';
+  $handler->display->display_options['filters']['field_featured_status_value']['field'] = 'field_featured_status_value';
+  $handler->display->display_options['filters']['field_featured_status_value']['value'] = array(
+    1 => '1',
+  );
+  $handler->display->display_options['filters']['field_featured_status_value']['group'] = 1;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status_1']['id'] = 'status_1';
+  $handler->display->display_options['filters']['status_1']['table'] = 'node';
+  $handler->display->display_options['filters']['status_1']['field'] = 'status';
+  $handler->display->display_options['filters']['status_1']['value'] = '1';
+  $handler->display->display_options['filters']['status_1']['group'] = 2;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type_1']['id'] = 'type_1';
+  $handler->display->display_options['filters']['type_1']['table'] = 'node';
+  $handler->display->display_options['filters']['type_1']['field'] = 'type';
+  $handler->display->display_options['filters']['type_1']['value'] = array(
+    'track' => 'track',
+  );
+  $handler->display->display_options['filters']['type_1']['group'] = 2;
+  /* Filter criterion: Broken/missing handler */
+  $handler->display->display_options['filters']['field_album_target_id']['id'] = 'field_album_target_id';
+  $handler->display->display_options['filters']['field_album_target_id']['table'] = 'field_data_field_album';
+  $handler->display->display_options['filters']['field_album_target_id']['field'] = 'field_album_target_id';
+  $handler->display->display_options['filters']['field_album_target_id']['operator'] = 'empty';
+  $handler->display->display_options['filters']['field_album_target_id']['group'] = 2;
+  /* Filter criterion: Content: Feature content (field_featured_status) */
+  $handler->display->display_options['filters']['field_featured_status_value_1']['id'] = 'field_featured_status_value_1';
+  $handler->display->display_options['filters']['field_featured_status_value_1']['table'] = 'field_data_field_featured_status';
+  $handler->display->display_options['filters']['field_featured_status_value_1']['field'] = 'field_featured_status_value';
+  $handler->display->display_options['filters']['field_featured_status_value_1']['value'] = array(
+    1 => '1',
+  );
+  $handler->display->display_options['filters']['field_featured_status_value_1']['group'] = 2;
+  $handler->display->display_options['pane_category']['name'] = 'Discography';
+  $handler->display->display_options['pane_category']['weight'] = '-5';
+  $handler->display->display_options['allow']['use_pager'] = 0;
+  $handler->display->display_options['allow']['items_per_page'] = 'items_per_page';
+  $handler->display->display_options['allow']['offset'] = 0;
+  $handler->display->display_options['allow']['link_to_view'] = 0;
+  $handler->display->display_options['allow']['more_link'] = 0;
+  $handler->display->display_options['allow']['path_override'] = 0;
+  $handler->display->display_options['allow']['title_override'] = 'title_override';
+  $handler->display->display_options['allow']['exposed_form'] = 'exposed_form';
+  $handler->display->display_options['allow']['fields_override'] = 'fields_override';
   $export['releases'] = $view;
 
   $view = new view();
   $view->name = 'tracklist';
   $view->description = 'An ordered tracklist view for an album node display.';
-  $view->tag = 'pushtape';
+  $view->tag = 'openproducer';
   $view->base_table = 'node';
   $view->human_name = 'Tracklist';
   $view->core = 7;
@@ -542,6 +693,26 @@ function openproducer_music_views_default_views() {
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Audio */
+  $handler->display->display_options['fields']['field_audio']['id'] = 'field_audio';
+  $handler->display->display_options['fields']['field_audio']['table'] = 'field_data_field_audio';
+  $handler->display->display_options['fields']['field_audio']['field'] = 'field_audio';
+  $handler->display->display_options['fields']['field_audio']['label'] = '';
+  $handler->display->display_options['fields']['field_audio']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_audio']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_audio']['type'] = 'pushtape_player';
+  $handler->display->display_options['fields']['field_audio']['settings'] = array(
+    'text' => 'empty',
+  );
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Contextual filter: Content: Nid */
   $handler->display->display_options['arguments']['nid']['id'] = 'nid';
@@ -580,13 +751,6 @@ function openproducer_music_views_default_views() {
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* No results behavior: Global: Text area */
-  $handler->display->display_options['empty']['area']['id'] = 'area';
-  $handler->display->display_options['empty']['area']['table'] = 'views';
-  $handler->display->display_options['empty']['area']['field'] = 'area';
-  $handler->display->display_options['empty']['area']['label'] = 'No releases yet';
-  $handler->display->display_options['empty']['area']['content'] = 'No releases yet. Add a <a href="?q=node/add/track">new track!</a>';
-  $handler->display->display_options['empty']['area']['format'] = 'filtered_html';
   /* Field: Content: Artwork */
   $handler->display->display_options['fields']['field_artwork']['id'] = 'field_artwork';
   $handler->display->display_options['fields']['field_artwork']['table'] = 'field_data_field_artwork';
@@ -701,16 +865,9 @@ function openproducer_music_views_default_views() {
   $handler->display->display_options['fields']['field_audio']['table'] = 'field_data_field_audio';
   $handler->display->display_options['fields']['field_audio']['field'] = 'field_audio';
   $handler->display->display_options['fields']['field_audio']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_audio']['type'] = 'soundmanager2_ui360';
+  $handler->display->display_options['fields']['field_audio']['type'] = 'pushtape_player';
   $handler->display->display_options['fields']['field_audio']['settings'] = array(
-    'pause' => 'pause',
-    'inline' => 1,
-    'visualization' => 0,
-    'waveform' => 1,
-    'eq' => 0,
-    'amplifier' => 1,
-    'diameter' => '25',
-    'text' => 'filename',
+    'text' => 'empty',
   );
   /* Field: Content: Artwork */
   $handler->display->display_options['fields']['field_artwork']['id'] = 'field_artwork';
@@ -731,13 +888,6 @@ function openproducer_music_views_default_views() {
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Field: Broken/missing handler */
-  $handler->display->display_options['fields']['field_album']['id'] = 'field_album';
-  $handler->display->display_options['fields']['field_album']['table'] = 'field_data_field_album';
-  $handler->display->display_options['fields']['field_album']['field'] = 'field_album';
-  $handler->display->display_options['fields']['field_album']['label'] = 'Release';
-  $handler->display->display_options['fields']['field_album']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_album']['hide_alter_empty'] = FALSE;
   /* Field: Content: Purchase */
   $handler->display->display_options['fields']['field_purchase']['id'] = 'field_purchase';
   $handler->display->display_options['fields']['field_purchase']['table'] = 'field_data_field_purchase';
@@ -750,11 +900,7 @@ function openproducer_music_views_default_views() {
   $handler = $view->new_display('panel_pane', 'Track grid', 'panel_pane_1');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
-  $handler->display->display_options['style_plugin'] = 'responsive_grid';
-  $handler->display->display_options['style_options']['wrapper_classes'] = 'group widgets';
-  $handler->display->display_options['style_options']['column_classes'] = 'col span_1_of_4';
-  $handler->display->display_options['style_options']['first_column_classes'] = '';
-  $handler->display->display_options['style_options']['last_column_classes'] = '';
+  $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
@@ -772,14 +918,6 @@ function openproducer_music_views_default_views() {
     'image_style' => 'artwork_small',
     'image_link' => 'content',
   );
-  /* Field: Broken/missing handler */
-  $handler->display->display_options['fields']['field_album']['id'] = 'field_album';
-  $handler->display->display_options['fields']['field_album']['table'] = 'field_data_field_album';
-  $handler->display->display_options['fields']['field_album']['field'] = 'field_album';
-  $handler->display->display_options['fields']['field_album']['label'] = '';
-  $handler->display->display_options['fields']['field_album']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_album']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_album']['hide_alter_empty'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -843,12 +981,7 @@ function openproducer_music_views_default_views() {
   $handler->display->display_options['pager']['options']['items_per_page'] = '1';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
-  $handler->display->display_options['style_plugin'] = 'responsive_grid';
-  $handler->display->display_options['style_options']['columns'] = '1';
-  $handler->display->display_options['style_options']['wrapper_classes'] = 'group widgets';
-  $handler->display->display_options['style_options']['column_classes'] = 'col span_1_of_1';
-  $handler->display->display_options['style_options']['first_column_classes'] = '';
-  $handler->display->display_options['style_options']['last_column_classes'] = '';
+  $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'panels_fields';
@@ -883,14 +1016,6 @@ function openproducer_music_views_default_views() {
     'image_style' => 'artwork_small',
     'image_link' => 'content',
   );
-  /* Field: Broken/missing handler */
-  $handler->display->display_options['fields']['field_album']['id'] = 'field_album';
-  $handler->display->display_options['fields']['field_album']['table'] = 'field_data_field_album';
-  $handler->display->display_options['fields']['field_album']['field'] = 'field_album';
-  $handler->display->display_options['fields']['field_album']['label'] = '';
-  $handler->display->display_options['fields']['field_album']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_album']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_album']['hide_alter_empty'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -972,10 +1097,11 @@ function openproducer_music_views_default_views() {
   $handler->display->display_options['allow']['exposed_form'] = 'exposed_form';
   $handler->display->display_options['allow']['fields_override'] = 'fields_override';
 
-  /* Display: track pane */
-  $handler = $view->new_display('panel_pane', 'track pane', 'panel_pane_3');
+  /* Display: Track pane */
+  $handler = $view->new_display('panel_pane', 'Track pane', 'panel_pane_3');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Appears on';
+  $handler->display->display_options['defaults']['empty'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   /* Relationship: Entity Reference: Referencing entity */
   $handler->display->display_options['relationships']['reverse_field_tracklist_node']['id'] = 'reverse_field_tracklist_node';
@@ -1010,12 +1136,32 @@ function openproducer_music_views_default_views() {
   $handler->display->display_options['arguments']['nid']['id'] = 'nid';
   $handler->display->display_options['arguments']['nid']['table'] = 'node';
   $handler->display->display_options['arguments']['nid']['field'] = 'nid';
-  $handler->display->display_options['arguments']['nid']['relationship'] = 'reverse_field_album_node';
   $handler->display->display_options['arguments']['nid']['default_action'] = 'default';
   $handler->display->display_options['arguments']['nid']['default_argument_type'] = 'node';
   $handler->display->display_options['arguments']['nid']['summary']['number_of_records'] = '0';
   $handler->display->display_options['arguments']['nid']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['nid']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 0;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'track' => 'track',
+  );
+  /* Filter criterion: Content: Tracklist (field_tracklist) */
+  $handler->display->display_options['filters']['field_tracklist_target_id']['id'] = 'field_tracklist_target_id';
+  $handler->display->display_options['filters']['field_tracklist_target_id']['table'] = 'field_data_field_tracklist';
+  $handler->display->display_options['filters']['field_tracklist_target_id']['field'] = 'field_tracklist_target_id';
+  $handler->display->display_options['filters']['field_tracklist_target_id']['operator'] = 'not empty';
   $export['tracks'] = $view;
 
   return $export;
