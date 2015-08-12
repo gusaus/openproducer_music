@@ -44,7 +44,7 @@ function openproducer_music_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '14',
+          'weight' => '13',
         ),
       ),
       'display' => array(),
@@ -86,7 +86,7 @@ function openproducer_music_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '14',
+          'weight' => '12',
         ),
       ),
       'display' => array(),
