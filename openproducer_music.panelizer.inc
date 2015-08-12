@@ -170,9 +170,6 @@ function openproducer_music_panelizer_defaults() {
   $pane->cache = array();
   $pane->style = array(
     'settings' => array(
-      'modifier_class' => '',
-      'collapsible' => 0,
-      'collapsed' => 0,
       'hide_classes' => array(
         'hidden-xs' => 0,
         'hidden-sm' => 0,
@@ -185,7 +182,7 @@ function openproducer_music_panelizer_defaults() {
         'clearfix' => 0,
       ),
     ),
-    'style' => 'bootstrap_styles:panel',
+    'style' => 'bootstrap_styles:well',
   );
   $pane->css = array();
   $pane->extras = array();
@@ -320,35 +317,45 @@ function openproducer_music_panelizer_defaults() {
   $display->content['new-a4173c3b-a45f-4949-bbde-b56f0639ff27'] = $pane;
   $display->panels['column2'][3] = 'new-a4173c3b-a45f-4949-bbde-b56f0639ff27';
   $pane = new stdClass();
-  $pane->pid = 'new-fc6daafd-06f7-40a1-b507-d9b28bb29f2a';
+  $pane->pid = 'new-7cc288e2-206c-47ad-a7c8-94b3f222070c';
   $pane->panel = 'column2';
-  $pane->type = 'entity_field';
-  $pane->subtype = 'node:field_links';
+  $pane->type = 'node_links';
+  $pane->subtype = 'node_links';
   $pane->shown = TRUE;
   $pane->access = array();
   $pane->configuration = array(
-    'label' => 'hidden',
-    'formatter' => 'link_default',
-    'delta_limit' => '0',
-    'delta_offset' => '0',
-    'delta_reversed' => 0,
-    'formatter_settings' => array(),
-    'context' => array(),
     'override_title' => 0,
     'override_title_text' => '',
+    'build_mode' => 'full',
+    'identifier' => '',
+    'link' => 1,
+    'context' => 'panelizer',
     'override_title_heading' => 'h2',
   );
   $pane->cache = array();
   $pane->style = array(
-    'settings' => NULL,
+    'settings' => array(
+      'hide_classes' => array(
+        'hidden-xs' => 0,
+        'hidden-sm' => 0,
+        'hidden-md' => 0,
+        'hidden-lg' => 0,
+      ),
+      'additional_classes' => array(
+        'pull-left' => 0,
+        'pull-right' => 0,
+        'clearfix' => 0,
+      ),
+    ),
+    'style' => 'bootstrap_styles:well',
   );
   $pane->css = array();
   $pane->extras = array();
   $pane->position = 4;
   $pane->locks = array();
-  $pane->uuid = 'fc6daafd-06f7-40a1-b507-d9b28bb29f2a';
-  $display->content['new-fc6daafd-06f7-40a1-b507-d9b28bb29f2a'] = $pane;
-  $display->panels['column2'][4] = 'new-fc6daafd-06f7-40a1-b507-d9b28bb29f2a';
+  $pane->uuid = '7cc288e2-206c-47ad-a7c8-94b3f222070c';
+  $display->content['new-7cc288e2-206c-47ad-a7c8-94b3f222070c'] = $pane;
+  $display->panels['column2'][4] = 'new-7cc288e2-206c-47ad-a7c8-94b3f222070c';
   $pane = new stdClass();
   $pane->pid = 'new-3bd3e982-7494-44b7-acdb-5b233b98b77c';
   $pane->panel = 'footer';

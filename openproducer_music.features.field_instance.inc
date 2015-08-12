@@ -357,7 +357,7 @@ function openproducer_music_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 15,
+        'weight' => 17,
       ),
       'featured' => array(
         'label' => 'above',
@@ -1077,7 +1077,7 @@ function openproducer_music_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 15,
+        'weight' => 17,
       ),
       'featured' => array(
         'label' => 'above',

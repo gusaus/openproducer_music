@@ -431,6 +431,12 @@ function openproducer_music_views_default_views() {
   $handler->display->display_options['filters']['status_1']['field'] = 'status';
   $handler->display->display_options['filters']['status_1']['value'] = '1';
   $handler->display->display_options['filters']['status_1']['group'] = 2;
+  /* Filter criterion: Content: Artwork (field_artwork:fid) */
+  $handler->display->display_options['filters']['field_artwork_fid']['id'] = 'field_artwork_fid';
+  $handler->display->display_options['filters']['field_artwork_fid']['table'] = 'field_data_field_artwork';
+  $handler->display->display_options['filters']['field_artwork_fid']['field'] = 'field_artwork_fid';
+  $handler->display->display_options['filters']['field_artwork_fid']['operator'] = 'not empty';
+  $handler->display->display_options['filters']['field_artwork_fid']['group'] = 2;
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type_1']['id'] = 'type_1';
   $handler->display->display_options['filters']['type_1']['table'] = 'node';
@@ -1157,7 +1163,7 @@ function openproducer_music_views_default_views() {
   $handler->display->display_options['fields']['field_artwork']['hide_alter_empty'] = FALSE;
   $handler->display->display_options['fields']['field_artwork']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_artwork']['settings'] = array(
-    'image_style' => 'artwork_small',
+    'image_style' => 'artwork_large',
     'image_link' => 'content',
   );
   /* Field: Content: Title */
@@ -1204,7 +1210,6 @@ function openproducer_music_views_default_views() {
   /* Display: Track details */
   $handler = $view->new_display('panel_pane', 'Track details', 'panel_pane_5');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Details';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['style_options']['row_class_special'] = FALSE;
@@ -1216,9 +1221,9 @@ function openproducer_music_views_default_views() {
     'field_label' => 'field_label',
     'field_release_date' => 'field_release_date',
     'field_license' => 'field_license',
-    'field_credits' => 'field_credits',
   );
   $handler->display->display_options['row_options']['separator'] = '<br>';
+  $handler->display->display_options['row_options']['hide_empty'] = TRUE;
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Artist */
