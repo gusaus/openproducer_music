@@ -52,18 +52,17 @@ function openproducer_music_image_default_styles() {
 
   // Exported image style: artwork_large.
   $styles['artwork_large'] = array(
+    'label' => 'artwork_large',
     'effects' => array(
-      1 => array(
-        'name' => 'image_scale',
+      2 => array(
+        'name' => 'image_scale_and_crop',
         'data' => array(
-          'width' => 550,
-          'height' => '',
-          'upscale' => 1,
+          'width' => 640,
+          'height' => 640,
         ),
-        'weight' => 1,
+        'weight' => 2,
       ),
     ),
-    'label' => 'artwork_large',
   );
 
   // Exported image style: artwork_medium.
