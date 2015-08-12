@@ -2,7 +2,6 @@ name = OpenProducer Music
 description = Feature package that creates album and track content types and views.
 core = 7.x
 package = OpenProducer
-version = 7.x-1.0-beta1
 project = openproducer_music
 dependencies[] = block
 dependencies[] = colorbox
@@ -170,3 +169,7 @@ features_exclude[field][node-album-field_country] = node-album-field_country
 features_exclude[field_base][body] = body
 project path = profiles/openproducer/modules/openproducer
 ude[field][node-album-field_catalog] = node-album-field_catalog
+
+version = "7.x-1.0-beta25"
+core = "7.x"
+project = "openproducer_music"
