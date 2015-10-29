@@ -315,6 +315,9 @@ function openproducer_music_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_type'] = 'h4';
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_default_classes'] = FALSE;
   /* Field: Content: Artist */
   $handler->display->display_options['fields']['field_artist']['id'] = 'field_artist';
   $handler->display->display_options['fields']['field_artist']['table'] = 'field_data_field_artist';
@@ -374,10 +377,8 @@ function openproducer_music_views_default_views() {
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['defaults']['css_class'] = FALSE;
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
-  $handler->display->display_options['style_plugin'] = 'default';
-  $handler->display->display_options['style_options']['row_class'] = 'col-xs-6 col-md-3';
-  $handler->display->display_options['style_options']['default_row_class'] = FALSE;
-  $handler->display->display_options['style_options']['row_class_special'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'views_bootstrap_grid_plugin_style';
+  $handler->display->display_options['style_options']['columns'] = '4';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
@@ -500,6 +501,9 @@ function openproducer_music_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_type'] = 'h4';
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_default_classes'] = FALSE;
   /* Field: Content: Artist */
   $handler->display->display_options['fields']['field_artist']['id'] = 'field_artist';
   $handler->display->display_options['fields']['field_artist']['table'] = 'field_data_field_artist';
@@ -563,12 +567,6 @@ function openproducer_music_views_default_views() {
     'track' => 'track',
   );
   $handler->display->display_options['filters']['type_1']['group'] = 2;
-  /* Filter criterion: Broken/missing handler */
-  $handler->display->display_options['filters']['field_album_target_id']['id'] = 'field_album_target_id';
-  $handler->display->display_options['filters']['field_album_target_id']['table'] = 'field_data_field_album';
-  $handler->display->display_options['filters']['field_album_target_id']['field'] = 'field_album_target_id';
-  $handler->display->display_options['filters']['field_album_target_id']['operator'] = 'empty';
-  $handler->display->display_options['filters']['field_album_target_id']['group'] = 2;
   /* Filter criterion: Content: Feature content (field_featured_status) */
   $handler->display->display_options['filters']['field_featured_status_value_1']['id'] = 'field_featured_status_value_1';
   $handler->display->display_options['filters']['field_featured_status_value_1']['table'] = 'field_data_field_featured_status';
