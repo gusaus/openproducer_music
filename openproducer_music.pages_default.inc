@@ -59,7 +59,23 @@ function openproducer_music_default_page_manager_pages() {
   $display->panel_settings = array(
     'style_settings' => array(
       'default' => NULL,
-      'contentmain' => NULL,
+      'contentmain' => array(
+        'region_title' => '',
+        'hide_classes' => array(
+          'hidden-xs' => 0,
+          'hidden-sm' => 0,
+          'hidden-md' => 0,
+          'hidden-lg' => 0,
+        ),
+        'additional_classes' => array(
+          'pull-left' => 0,
+          'pull-right' => 0,
+          'clearfix' => 0,
+        ),
+      ),
+    ),
+    'contentmain' => array(
+      'style' => 'bootstrap_styles:well',
     ),
   );
   $display->cache = array();
@@ -79,6 +95,7 @@ function openproducer_music_default_page_manager_pages() {
     'fields_override' => array(
       'field_artwork' => 1,
       'title' => 1,
+      'field_artist' => 0,
     ),
     'exposed' => array(
       'sort_order' => 'DESC',
@@ -90,7 +107,7 @@ function openproducer_music_default_page_manager_pages() {
     'view_settings' => 'fields',
     'header_type' => 'none',
     'view_mode' => 'teaser',
-    'widget_title' => '',
+    'widget_title' => 'Releases',
   );
   $pane->cache = array();
   $pane->style = array(
@@ -103,8 +120,8 @@ function openproducer_music_default_page_manager_pages() {
   $pane->uuid = '1fecf142-0a93-4077-8725-7e2257988ec3';
   $display->content['new-1fecf142-0a93-4077-8725-7e2257988ec3'] = $pane;
   $display->panels['contentmain'][0] = 'new-1fecf142-0a93-4077-8725-7e2257988ec3';
-  $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = '0';
+  $display->hide_title = PANELS_TITLE_PANE;
+  $display->title_pane = 'new-1fecf142-0a93-4077-8725-7e2257988ec3';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['albums'] = $page;
@@ -160,11 +177,27 @@ function openproducer_music_default_page_manager_pages() {
   $display->panel_settings = array(
     'style_settings' => array(
       'default' => NULL,
-      'contentmain' => NULL,
+      'contentmain' => array(
+        'region_title' => '',
+        'hide_classes' => array(
+          'hidden-xs' => 0,
+          'hidden-sm' => 0,
+          'hidden-md' => 0,
+          'hidden-lg' => 0,
+        ),
+        'additional_classes' => array(
+          'clearfix' => 'clearfix',
+          'pull-left' => 0,
+          'pull-right' => 0,
+        ),
+      ),
+    ),
+    'contentmain' => array(
+      'style' => 'bootstrap_styles:well',
     ),
   );
   $display->cache = array();
-  $display->title = '';
+  $display->title = 'Discography';
   $display->uuid = 'f4875b02-d0db-4d5c-bdae-4813e694dd8e';
   $display->content = array();
   $display->panels = array();
@@ -270,7 +303,23 @@ function openproducer_music_default_page_manager_pages() {
   $display->panel_settings = array(
     'style_settings' => array(
       'default' => NULL,
-      'contentmain' => NULL,
+      'contentmain' => array(
+        'region_title' => '',
+        'hide_classes' => array(
+          'hidden-xs' => 0,
+          'hidden-sm' => 0,
+          'hidden-md' => 0,
+          'hidden-lg' => 0,
+        ),
+        'additional_classes' => array(
+          'pull-left' => 0,
+          'pull-right' => 0,
+          'clearfix' => 0,
+        ),
+      ),
+    ),
+    'contentmain' => array(
+      'style' => 'bootstrap_styles:well',
     ),
   );
   $display->cache = array();
@@ -301,8 +350,8 @@ function openproducer_music_default_page_manager_pages() {
   $pane->uuid = 'ba00814e-8527-49ba-9c00-ada3a1e53335';
   $display->content['new-ba00814e-8527-49ba-9c00-ada3a1e53335'] = $pane;
   $display->panels['contentmain'][0] = 'new-ba00814e-8527-49ba-9c00-ada3a1e53335';
-  $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = '0';
+  $display->hide_title = PANELS_TITLE_PANE;
+  $display->title_pane = 'new-ba00814e-8527-49ba-9c00-ada3a1e53335';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['tracks'] = $page;

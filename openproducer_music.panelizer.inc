@@ -79,15 +79,8 @@ function openproducer_music_panelizer_defaults() {
   );
   $pane->cache = array();
   $pane->style = array(
-    'style' => 'bootstrap_styles:well',
-    'settings' => array(
-      'modifier_class' => '',
-      'hide_classes' => array(),
-      'additional_classes' => array(),
-      'collapsible' => FALSE,
-      'collapsed' => '',
-      'region_title' => '',
-    ),
+    'style' => 'default',
+    'settings' => NULL,
   );
   $pane->css = array();
   $pane->extras = array();
@@ -169,6 +162,7 @@ function openproducer_music_panelizer_defaults() {
   );
   $pane->cache = array();
   $pane->style = array(
+    'style' => 'bootstrap_styles:well',
     'settings' => array(
       'hide_classes' => array(
         'hidden-xs' => 0,
@@ -182,7 +176,6 @@ function openproducer_music_panelizer_defaults() {
         'clearfix' => 0,
       ),
     ),
-    'style' => 'bootstrap_styles:well',
   );
   $pane->css = array();
   $pane->extras = array();
@@ -205,15 +198,20 @@ function openproducer_music_panelizer_defaults() {
   );
   $pane->cache = array();
   $pane->style = array(
-    'settings' => array(
-      'modifier_class' => '',
-      'hide_classes' => array(),
-      'additional_classes' => array(),
-      'collapsible' => FALSE,
-      'collapsed' => '',
-      'region_title' => '',
-    ),
     'style' => 'bootstrap_styles:well',
+    'settings' => array(
+      'hide_classes' => array(
+        'hidden-xs' => 0,
+        'hidden-sm' => 0,
+        'hidden-md' => 0,
+        'hidden-lg' => 0,
+      ),
+      'additional_classes' => array(
+        'pull-left' => 0,
+        'pull-right' => 0,
+        'clearfix' => 0,
+      ),
+    ),
   );
   $pane->css = array();
   $pane->extras = array();
@@ -256,6 +254,7 @@ function openproducer_music_panelizer_defaults() {
   );
   $pane->cache = array();
   $pane->style = array(
+    'style' => 'bootstrap_styles:well',
     'settings' => array(
       'hide_classes' => array(
         'hidden-xs' => 0,
@@ -269,7 +268,6 @@ function openproducer_music_panelizer_defaults() {
         'clearfix' => 0,
       ),
     ),
-    'style' => 'bootstrap_styles:well',
   );
   $pane->css = array();
   $pane->extras = array();
@@ -299,15 +297,20 @@ function openproducer_music_panelizer_defaults() {
   );
   $pane->cache = array();
   $pane->style = array(
-    'settings' => array(
-      'modifier_class' => '',
-      'hide_classes' => array(),
-      'additional_classes' => array(),
-      'collapsible' => FALSE,
-      'collapsed' => '',
-      'region_title' => '',
-    ),
     'style' => 'bootstrap_styles:well',
+    'settings' => array(
+      'hide_classes' => array(
+        'hidden-xs' => 0,
+        'hidden-sm' => 0,
+        'hidden-md' => 0,
+        'hidden-lg' => 0,
+      ),
+      'additional_classes' => array(
+        'pull-left' => 0,
+        'pull-right' => 0,
+        'clearfix' => 0,
+      ),
+    ),
   );
   $pane->css = array();
   $pane->extras = array();
@@ -335,6 +338,9 @@ function openproducer_music_panelizer_defaults() {
   $pane->cache = array();
   $pane->style = array(
     'settings' => array(
+      'modifier_class' => '',
+      'collapsible' => 0,
+      'collapsed' => 0,
       'hide_classes' => array(
         'hidden-xs' => 0,
         'hidden-sm' => 0,
@@ -347,7 +353,7 @@ function openproducer_music_panelizer_defaults() {
         'clearfix' => 0,
       ),
     ),
-    'style' => 'bootstrap_styles:well',
+    'style' => 'bootstrap_styles:panel',
   );
   $pane->css = array();
   $pane->extras = array();
@@ -911,6 +917,9 @@ function openproducer_music_panelizer_defaults() {
   $pane->cache = array();
   $pane->style = array(
     'settings' => array(
+      'modifier_class' => '',
+      'collapsible' => 0,
+      'collapsed' => 0,
       'hide_classes' => array(
         'hidden-xs' => 0,
         'hidden-sm' => 0,
@@ -923,7 +932,7 @@ function openproducer_music_panelizer_defaults() {
         'clearfix' => 0,
       ),
     ),
-    'style' => 'bootstrap_styles:well',
+    'style' => 'bootstrap_styles:panel',
   );
   $pane->css = array(
     'css_class' => 'link-wrapper',
